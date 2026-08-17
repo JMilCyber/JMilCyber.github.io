@@ -73,7 +73,7 @@ SecurityEvent
 
 ### Main Menu
 
-*  After initial setup, the main menu appears with information of the local computer as well as imaging computers on the workbench
+*  After initial setup, the main menu appears with information of the local computer, menu options, and status of imaging computers on the workbench
 
 ![Main Menu](Project_Photos/Main_Menu.png)
 
@@ -132,3 +132,9 @@ if (!($result)){
     break
 }
 ```
+
+###  Script Selection
+
+*  Upon pressing "O" a menu pops up allowing a number of additional scripts that can be run for silent and remote maintenance
+
+![Select Tool](Project_Photos/Select_Tool.png)
