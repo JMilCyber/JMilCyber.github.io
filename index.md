@@ -69,7 +69,7 @@ SecurityEvent
 
 *  4357 lines of code utilized across 6 work centers and 26 technicians
 
-*  Initial Diagram created when being pitched to supervisor
+*  Initial diagram created when being pitched to supervisor
 
 ![CFT_Tool_Diagram](Project_Photos/CFT_Tool_Diagram.png)
 
