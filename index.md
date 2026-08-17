@@ -1,6 +1,6 @@
-# Projects
-
 This is a showcase of my cybersecurity projects and code I've created.
+
+# Projects
 
 * * *
 ## Virtual SOC in Azure
@@ -62,8 +62,12 @@ SecurityEvent
 
 ![Threat_Intelligence](Project_Photos/Threat_Intelligence.png)
 
+# Code
+
 * * *
 ## Powershell CFT (Cross Functional Team) Tool
+
+![CFT_Tool_Diagram](Project_Photos/CFT_Tool_Diagram.png)
 
 ### Initial Setup
 
