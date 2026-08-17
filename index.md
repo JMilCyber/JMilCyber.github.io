@@ -61,3 +61,47 @@ SecurityEvent
 *   After a while, Sentinel shows 282,328 Threat Intelligence Indicators, which can now be used with detection rules
 
 ![Threat_Intelligence](Project_Photos/Threat_Intelligence.png)
+
+* * *
+## Powershell CFT (Cross Functional Team) Tool
+
+### Initial Setup
+
+*  Prompts for installation of the DRA REST Extensions and RSAT features to enable active directory features
+
+![DRA REST Extendsions](Project_Photos/DRA_REST_Extensions.png)
+
+### Main Menu
+
+*  After initial setup, the main menu appears with information of the local computer as well as imaging computers on the workbench
+
+![Main Menu](Project_Photos/Main_Menu.png)
+
+*  Verbose network insight: if the local computer or supporting servers goes offline it'll display status and attempt repair
+
+![offline](Project_Photos/offline.png)
+
+```PS
+$result = try{Test-ComputerSecureChannel -Server $domainname -Repair}catch{$false}
+if ($result){
+    $host.UI.RawUI.CursorPosition = $reconnectpos
+    Write-Host "                                                      "
+    Write-Host "Connection Restored           " -ForegroundColor Green
+    Write-Host "Updating..." -ForegroundColor Yellow
+}
+if (!($result)){
+    $simplerepairattempts ++
+    if ($simplerepairattempts -ge 30){
+        Remove-Item "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles" -Force -ErrorAction SilentlyContinue
+        $adapter = (Get-NetAdapter -Physical | Where-Object { $_.Status -eq "Up" }).Name
+        if ($adapter){
+            if (($adapter -notlike "*Wi-Fi*") -or ($adapter -notlike "*WiFi*")){
+                Restart-NetAdapter $adapter
+            }
+        }
+        $simplerepairattempts = 0
+    }
+} else {
+    break
+}
+```
