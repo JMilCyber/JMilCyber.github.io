@@ -77,7 +77,7 @@ SecurityEvent
 
 ![Main Menu](Project_Photos/Main_Menu.png)
 
-*  Verbose network insight: if the local computer or supporting servers goes offline it'll display status and attempt repair
+*  Verbose network insight: if the local computer or supporting servers goes offline, display status and attempt domain connection repair
 
 ![offline](Project_Photos/offline.png)
 
