@@ -71,8 +71,6 @@ SecurityEvent
 
 ![CFT_Tool_Diagram](Project_Photos/CFT_Tool_Diagram.png)
 
-*  Initial Diagram created when being pitched to supervisor
-
 ### Initial Setup
 
 *  Prompts for installation of the DRA REST Extensions and RSAT features to enable active directory features
