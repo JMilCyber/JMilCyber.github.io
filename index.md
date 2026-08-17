@@ -77,6 +77,33 @@ SecurityEvent
 
 ![Main Menu](Project_Photos/Main_Menu.png)
 
+*  Log retrieval from WDS server and formatting for status of imaging computers
+
+```PS
+$Today = (Get-Date).Date
+$LocalDate = Get-Date -Format yyyy:MM:dd
+$LocalTime = Get-Date -Format HH:mm
+$events = Get-WinEvent -LogName "Microsoft-Windows-Deployment-Services-Diagnostics/Operational" | Where-Object {$_.Id -in 4099 -and $_.TimeCreated -ge $today}
+$IPAddresses = @()
+$Times = @()
+#gets IP Address and time started for each client in $events
+$results = foreach ($event in $events){
+    $message = $event.Message
+    if ($message -like "*SDC 11.2409 WindowsPE.wim*"){
+        $TimeStarted = $event.TimeCreated
+        $parts = $message.Split(' ')
+        $phrase = $parts[8]
+        $IPAddress = $phrase.Replace("Filename:", "")
+        $IPAddress = $IPAddress.Replace(" ", "")
+        $IPAddress = $IPAddress.Replace("`r`n", "")
+        if ($IPAddress -like "131.35*"){
+            $IPAddresses += $IPAddress
+            $Times += $TimeStarted
+        }
+    }
+}
+```
+
 *  Verbose network insight: if the local computer or supporting servers goes offline, display status and attempt domain connection repair
 
 ![offline](Project_Photos/offline.png)
@@ -92,7 +119,7 @@ if ($result){
 if (!($result)){
     $simplerepairattempts ++
     if ($simplerepairattempts -ge 30){
-        Remove-Item "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles" -Force -ErrorAction SilentlyContinue
+        Remove-Item "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles" -Force -EA SilentlyContinue
         $adapter = (Get-NetAdapter -Physical | Where-Object { $_.Status -eq "Up" }).Name
         if ($adapter){
             if (($adapter -notlike "*Wi-Fi*") -or ($adapter -notlike "*WiFi*")){
