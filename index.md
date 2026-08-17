@@ -65,8 +65,7 @@ SecurityEvent
 # Code
 
 * * *
-## Powershell CFT (Cross Functional Team) Tool
-### -_Developed for US Air Force_
+## Powershell CFT (Cross Functional Team) Tool -_Developed for US Air Force_
 
 *  Initial Diagram created when being pitched to supervisor
 
